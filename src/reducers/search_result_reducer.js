@@ -11,7 +11,10 @@ const SearchResultReducer = (state = _defaultState, action) => {
 
   switch(action.type) {
     case RECEIVE_ALL_MOVIES:
-      return merge({}, state, { movies: action.movies });
+      return {
+        movies: action.movies,
+        numberResults: state.numberResults
+      };
     case RECEIVE_NUM_RESULTS:
       return merge({}, state, { numberResults: action.numberResults });
     default:

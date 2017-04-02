@@ -46102,7 +46102,10 @@
 	
 	  switch (action.type) {
 	    case _search_actions.RECEIVE_ALL_MOVIES:
-	      return (0, _lodash.merge)({}, state, { movies: action.movies });
+	      return {
+	        movies: action.movies,
+	        numberResults: state.numberResults
+	      };
 	    case _search_actions.RECEIVE_NUM_RESULTS:
 	      return (0, _lodash.merge)({}, state, { numberResults: action.numberResults });
 	    default:
@@ -46169,7 +46172,7 @@
 /* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -46181,9 +46184,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactRouter = __webpack_require__(217);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -46205,16 +46208,85 @@
 	      type: "",
 	      page: 1
 	    };
+	
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Search, [{
-	    key: 'render',
+	    key: "update",
+	    value: function update(property) {
+	      var _this2 = this;
+	
+	      return function (e) {
+	        return _this2.setState(_defineProperty({}, property, e.currentTarget.value));
+	      };
+	    }
+	  }, {
+	    key: "handleSubmit",
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      var s = this.state;
+	      this.props.searchMovies(s.title, s.year, s.type, s.page);
+	    }
+	  }, {
+	    key: "renderTypes",
+	    value: function renderTypes() {
+	      var types = ['movie', 'series', 'episode'];
+	
+	      return types.map(function (type) {
+	        return _react2.default.createElement(
+	          "option",
+	          { key: type, value: type },
+	          type
+	        );
+	      });
+	    }
+	  }, {
+	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Search'
+	        "div",
+	        { id: "search-container" },
+	        _react2.default.createElement(
+	          "form",
+	          { id: "search-form", onSubmit: this.handleSubmit },
+	          _react2.default.createElement(
+	            "label",
+	            null,
+	            "Title:",
+	            _react2.default.createElement("input", {
+	              type: "text",
+	              value: this.state.title,
+	              onChange: this.update('title'),
+	              autoFocus: true })
+	          ),
+	          _react2.default.createElement(
+	            "label",
+	            null,
+	            "Year:",
+	            _react2.default.createElement("input", {
+	              type: "text",
+	              value: this.state.year,
+	              onChange: this.update('year') })
+	          ),
+	          _react2.default.createElement(
+	            "select",
+	            {
+	              type: "text",
+	              value: this.state.category,
+	              onChange: this.update('type') },
+	            _react2.default.createElement(
+	              "option",
+	              { value: "", disabled: true, selected: true },
+	              "Type"
+	            ),
+	            this.renderTypes()
+	          ),
+	          _react2.default.createElement("input", {
+	            type: "submit",
+	            value: "Search" })
+	        )
 	      );
 	    }
 	  }]);
