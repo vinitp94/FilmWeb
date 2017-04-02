@@ -1,16 +1,11 @@
 import React from 'react';
 
-class Movies extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Movies = ({ movies }) => (
+  <div id="movie-container">
+    <li id='movie-list'>
 
-  render() {
-    debugger
-    return (
-      <h3>Movies</h3>
-    );
-  }
-}
+    </li>
+  </div>
+);
 
 export default Movies;
