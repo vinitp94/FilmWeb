@@ -1,15 +1,12 @@
 import React from 'react';
 import Movies from '../movies/movies';
+import PageNav from './page_nav';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      title: "",
-      year: "",
-      type: "",
-      page: 1
+    this.state = { title: "", year: "", type: "", page: 1
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -68,6 +65,7 @@ class Search extends React.Component {
           </form>
         </div>
 
+        <PageNav pages={ this.props.pages } searchMovies={ this.props.searchMovies }/>
         <Movies movies={ this.props.movies }/>
       </div>
     );

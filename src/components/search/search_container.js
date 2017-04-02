@@ -4,7 +4,7 @@ import Search from './search';
 
 const mapStateToProps = ({ searchResults }) => ({
   movies: searchResults.movies,
-  numberResults: searchResults.numberResults
+  pages: Math.ceil(parseInt(searchResults.numberResults) / 10)
 });
 
 const mapDispatchToProps = (dispatch) => ({
