@@ -62,6 +62,8 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
+	var _movie_actions = __webpack_require__(279);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	document.addEventListener('DOMContentLoaded', function () {
@@ -69,6 +71,7 @@
 	  var root = document.getElementById('root');
 	
 	  window.store = store;
+	  window.searchMovies = _movie_actions.searchMovies;
 	
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 	});
@@ -28922,9 +28925,120 @@
 	
 	var _redux = __webpack_require__(190);
 	
-	var RootReducer = (0, _redux.combineReducers)({});
+	var _movie_reducer = __webpack_require__(278);
+	
+	var _movie_reducer2 = _interopRequireDefault(_movie_reducer);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var RootReducer = (0, _redux.combineReducers)({
+	  movies: _movie_reducer2.default
+	});
 	
 	exports.default = RootReducer;
+
+/***/ },
+/* 276 */,
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.searchMovies = undefined;
+	
+	var _queryString = __webpack_require__(248);
+	
+	var _queryString2 = _interopRequireDefault(_queryString);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var searchMovies = exports.searchMovies = function searchMovies(title, year, type) {
+	  var page = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+	
+	  var query = _queryString2.default.stringify({
+	    s: title,
+	    y: year,
+	    type: type,
+	    page: page
+	  });
+	
+	  return $.ajax({
+	    method: 'GET',
+	    url: 'http://www.omdbapi.com/?' + query
+	  });
+	};
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _movie_actions = __webpack_require__(279);
+	
+	var MovieReducer = function MovieReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	  var action = arguments[1];
+	
+	  Object.freeze(state);
+	
+	  switch (action.type) {
+	    case _movie_actions.RECEIVE_ALL_MOVIES:
+	      return action.movies;
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = MovieReducer;
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.searchMovies = exports.receiveAllMovies = exports.RECEIVE_ALL_MOVIES = undefined;
+	
+	var _omdb_api_util = __webpack_require__(277);
+	
+	var OMDBAPIUtil = _interopRequireWildcard(_omdb_api_util);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	var RECEIVE_ALL_MOVIES = exports.RECEIVE_ALL_MOVIES = 'RECEIVE_ALL_MOVIES';
+	
+	var receiveAllMovies = exports.receiveAllMovies = function receiveAllMovies(movies) {
+	  return {
+	    type: RECEIVE_ALL_MOVIES,
+	    movies: movies
+	  };
+	};
+	
+	var searchMovies = exports.searchMovies = function searchMovies(title, year, type, page) {
+	  return function (dispatch) {
+	    return OMDBAPIUtil.searchMovies(title, year, type, page).then(function (movies) {
+	      var results = [];
+	      if (movies.Search) {
+	        results = movies.Search;
+	      }
+	
+	      return dispatch(receiveAllMovies(results));
+	    }).fail(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	};
 
 /***/ }
 /******/ ]);
