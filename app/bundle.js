@@ -46172,7 +46172,7 @@
 /* 283 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -46183,6 +46183,10 @@
 	var _react = __webpack_require__(2);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _movies = __webpack_require__(286);
+	
+	var _movies2 = _interopRequireDefault(_movies);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -46214,7 +46218,7 @@
 	  }
 	
 	  _createClass(Search, [{
-	    key: "update",
+	    key: 'update',
 	    value: function update(property) {
 	      var _this2 = this;
 	
@@ -46223,70 +46227,76 @@
 	      };
 	    }
 	  }, {
-	    key: "handleSubmit",
+	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
+	
 	      var s = this.state;
 	      this.props.searchMovies(s.title, s.year, s.type, s.page);
 	    }
 	  }, {
-	    key: "renderTypes",
+	    key: 'renderTypes',
 	    value: function renderTypes() {
 	      var types = ['movie', 'series', 'episode'];
 	
 	      return types.map(function (type) {
 	        return _react2.default.createElement(
-	          "option",
+	          'option',
 	          { key: type, value: type },
 	          type
 	        );
 	      });
 	    }
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
-	        { id: "search-container" },
+	        'div',
+	        { id: 'search-results' },
 	        _react2.default.createElement(
-	          "form",
-	          { id: "search-form", onSubmit: this.handleSubmit },
+	          'div',
+	          { id: 'search-container' },
 	          _react2.default.createElement(
-	            "label",
-	            null,
-	            "Title:",
-	            _react2.default.createElement("input", {
-	              type: "text",
-	              value: this.state.title,
-	              onChange: this.update('title'),
-	              autoFocus: true })
-	          ),
-	          _react2.default.createElement(
-	            "label",
-	            null,
-	            "Year:",
-	            _react2.default.createElement("input", {
-	              type: "text",
-	              value: this.state.year,
-	              onChange: this.update('year') })
-	          ),
-	          _react2.default.createElement(
-	            "select",
-	            {
-	              type: "text",
-	              value: this.state.category,
-	              onChange: this.update('type') },
+	            'form',
+	            { id: 'search-form', onSubmit: this.handleSubmit },
 	            _react2.default.createElement(
-	              "option",
-	              { value: "", disabled: true, selected: true },
-	              "Type"
+	              'label',
+	              null,
+	              'Title:',
+	              _react2.default.createElement('input', {
+	                type: 'text',
+	                value: this.state.title,
+	                onChange: this.update('title'),
+	                autoFocus: true })
 	            ),
-	            this.renderTypes()
-	          ),
-	          _react2.default.createElement("input", {
-	            type: "submit",
-	            value: "Search" })
-	        )
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Year:',
+	              _react2.default.createElement('input', {
+	                type: 'text',
+	                value: this.state.year,
+	                onChange: this.update('year') })
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              {
+	                type: 'text',
+	                value: this.state.category,
+	                onChange: this.update('type') },
+	              _react2.default.createElement(
+	                'option',
+	                { value: '', disabled: true, selected: true },
+	                'Type'
+	              ),
+	              this.renderTypes()
+	            ),
+	            _react2.default.createElement('input', {
+	              type: 'submit',
+	              value: 'Search' })
+	          )
+	        ),
+	        _react2.default.createElement(_movies2.default, { movies: this.props.movies })
 	      );
 	    }
 	  }]);
@@ -46384,6 +46394,56 @@
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_search2.default);
+
+/***/ },
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Movies = function (_React$Component) {
+	  _inherits(Movies, _React$Component);
+	
+	  function Movies(props) {
+	    _classCallCheck(this, Movies);
+	
+	    return _possibleConstructorReturn(this, (Movies.__proto__ || Object.getPrototypeOf(Movies)).call(this, props));
+	  }
+	
+	  _createClass(Movies, [{
+	    key: 'render',
+	    value: function render() {
+	      debugger;
+	      return _react2.default.createElement(
+	        'h3',
+	        null,
+	        'Movies'
+	      );
+	    }
+	  }]);
+	
+	  return Movies;
+	}(_react2.default.Component);
+	
+	exports.default = Movies;
 
 /***/ }
 /******/ ]);
