@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import App from './app';
-import Search from './search/search';
+import SearchContainer from './search/search_container';
 import Favorites from './favorites/favorites';
 
 const Root = ({ store }) => {
@@ -10,7 +10,7 @@ const Root = ({ store }) => {
     <Provider store={ store }>
       <Router history={ hashHistory }>
         <Route path='/' component={ App }>
-          <Route path='/search' component={ Search } />
+          <IndexRoute component={ SearchContainer } />
           <Route path='/favorites' component={ Favorites } />
         </Route>
       </Router>
