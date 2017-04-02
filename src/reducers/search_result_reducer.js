@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_MOVIES, RECEIVE_NUM_RESULTS } from '../actions/movie_actions';
+import { RECEIVE_ALL_MOVIES, RECEIVE_NUM_RESULTS } from '../actions/search_actions';
 import { merge } from 'lodash';
 
 const _defaultState = {

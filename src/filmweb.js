@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
-import { searchMovies } from './actions/movie_actions';
+import { searchMovies } from './actions/search_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = configureStore();

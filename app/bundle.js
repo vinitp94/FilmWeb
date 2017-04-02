@@ -62,7 +62,7 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _movie_actions = __webpack_require__(279);
+	var _search_actions = __webpack_require__(282);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71,7 +71,7 @@
 	  var root = document.getElementById('root');
 	
 	  window.store = store;
-	  window.searchMovies = _movie_actions.searchMovies;
+	  window.searchMovies = _search_actions.searchMovies;
 	
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 	});
@@ -21538,9 +21538,15 @@
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _search = __webpack_require__(283);
 	
-	// import from './list_index/list_index_container';
+	var _search2 = _interopRequireDefault(_search);
+	
+	var _favorites = __webpack_require__(284);
+	
+	var _favorites2 = _interopRequireDefault(_favorites);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Root = function Root(_ref) {
 	  var store = _ref.store;
@@ -21551,7 +21557,12 @@
 	    _react2.default.createElement(
 	      _reactRouter.Router,
 	      { history: _reactRouter.hashHistory },
-	      _react2.default.createElement(_reactRouter.Route, { path: '/', component: _app2.default })
+	      _react2.default.createElement(
+	        _reactRouter.Route,
+	        { path: '/', component: _app2.default },
+	        _react2.default.createElement(_reactRouter.Route, { path: '/search', component: _search2.default }),
+	        _react2.default.createElement(_reactRouter.Route, { path: '/favorites', component: _favorites2.default })
+	      )
 	    )
 	  );
 	};
@@ -28973,59 +28984,7 @@
 
 /***/ },
 /* 278 */,
-/* 279 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.searchMovies = exports.receiveNumberResults = exports.receiveAllMovies = exports.RECEIVE_NUM_RESULTS = exports.RECEIVE_ALL_MOVIES = undefined;
-	
-	var _omdb_api_util = __webpack_require__(277);
-	
-	var OMDBAPIUtil = _interopRequireWildcard(_omdb_api_util);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	var RECEIVE_ALL_MOVIES = exports.RECEIVE_ALL_MOVIES = 'RECEIVE_ALL_MOVIES';
-	var RECEIVE_NUM_RESULTS = exports.RECEIVE_NUM_RESULTS = 'RECEIVE_NUM_RESULTS';
-	
-	var receiveAllMovies = exports.receiveAllMovies = function receiveAllMovies(movies) {
-	  return {
-	    type: RECEIVE_ALL_MOVIES,
-	    movies: movies
-	  };
-	};
-	
-	var receiveNumberResults = exports.receiveNumberResults = function receiveNumberResults(numberResults) {
-	  return {
-	    type: RECEIVE_NUM_RESULTS,
-	    numberResults: numberResults
-	  };
-	};
-	
-	var searchMovies = exports.searchMovies = function searchMovies(title, year, type, page) {
-	  return function (dispatch) {
-	    return OMDBAPIUtil.searchMovies(title, year, type, page).then(function (movies) {
-	      var results = [];
-	      var numResults = 0;
-	
-	      if (movies.Search) {
-	        results = movies.Search;
-	        numResults = movies.totalResults;
-	      }
-	
-	      dispatch(receiveAllMovies(results));
-	      dispatch(receiveNumberResults(numResults));
-	    }).fail(function (err) {
-	      return console.log(err);
-	    });
-	  };
-	};
-
-/***/ },
+/* 279 */,
 /* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -46126,7 +46085,7 @@
 	  value: true
 	});
 	
-	var _movie_actions = __webpack_require__(279);
+	var _search_actions = __webpack_require__(282);
 	
 	var _lodash = __webpack_require__(280);
 	
@@ -46142,9 +46101,9 @@
 	  Object.freeze(state);
 	
 	  switch (action.type) {
-	    case _movie_actions.RECEIVE_ALL_MOVIES:
+	    case _search_actions.RECEIVE_ALL_MOVIES:
 	      return (0, _lodash.merge)({}, state, { movies: action.movies });
-	    case _movie_actions.RECEIVE_NUM_RESULTS:
+	    case _search_actions.RECEIVE_NUM_RESULTS:
 	      return (0, _lodash.merge)({}, state, { numberResults: action.numberResults });
 	    default:
 	      return state;
@@ -46152,6 +46111,71 @@
 	};
 	
 	exports.default = SearchResultReducer;
+
+/***/ },
+/* 282 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.searchMovies = exports.receiveNumberResults = exports.receiveAllMovies = exports.RECEIVE_NUM_RESULTS = exports.RECEIVE_ALL_MOVIES = undefined;
+	
+	var _omdb_api_util = __webpack_require__(277);
+	
+	var OMDBAPIUtil = _interopRequireWildcard(_omdb_api_util);
+	
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	
+	var RECEIVE_ALL_MOVIES = exports.RECEIVE_ALL_MOVIES = 'RECEIVE_ALL_MOVIES';
+	var RECEIVE_NUM_RESULTS = exports.RECEIVE_NUM_RESULTS = 'RECEIVE_NUM_RESULTS';
+	
+	var receiveAllMovies = exports.receiveAllMovies = function receiveAllMovies(movies) {
+	  return {
+	    type: RECEIVE_ALL_MOVIES,
+	    movies: movies
+	  };
+	};
+	
+	var receiveNumberResults = exports.receiveNumberResults = function receiveNumberResults(numberResults) {
+	  return {
+	    type: RECEIVE_NUM_RESULTS,
+	    numberResults: numberResults
+	  };
+	};
+	
+	var searchMovies = exports.searchMovies = function searchMovies(title, year, type, page) {
+	  return function (dispatch) {
+	    return OMDBAPIUtil.searchMovies(title, year, type, page).then(function (movies) {
+	      var results = [];
+	      var numResults = 0;
+	
+	      if (movies.Search) {
+	        results = movies.Search;
+	        numResults = movies.totalResults;
+	      }
+	
+	      dispatch(receiveAllMovies(results));
+	      dispatch(receiveNumberResults(numResults));
+	    }).fail(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	};
+
+/***/ },
+/* 283 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+/***/ },
+/* 284 */
+/***/ function(module, exports) {
+
+	"use strict";
 
 /***/ }
 /******/ ]);
