@@ -46409,6 +46409,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _movie_item = __webpack_require__(287);
+	
+	var _movie_item2 = _interopRequireDefault(_movie_item);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Movies = function Movies(_ref) {
@@ -46416,11 +46420,44 @@
 	  return _react2.default.createElement(
 	    'div',
 	    { id: 'movie-container' },
-	    _react2.default.createElement('li', { id: 'movie-list' })
+	    _react2.default.createElement(
+	      'ul',
+	      { id: 'movie-list' },
+	      movies.map(function (movie) {
+	        return _react2.default.createElement(_movie_item2.default, { key: movie.imdbID, movie: movie });
+	      })
+	    )
 	  );
 	};
 	
 	exports.default = Movies;
+
+/***/ },
+/* 287 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(2);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var MovieItem = function MovieItem(_ref) {
+	  var movie = _ref.movie;
+	  return _react2.default.createElement(
+	    'li',
+	    { id: 'movie-item' },
+	    movie.Title
+	  );
+	};
+	
+	exports.default = MovieItem;
 
 /***/ }
 /******/ ]);
