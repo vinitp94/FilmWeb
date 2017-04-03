@@ -46210,9 +46210,7 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Search.__proto__ || Object.getPrototypeOf(Search)).call(this, props));
 	
-	    _this.state = { title: "", year: "", type: "", page: 1
-	    };
-	
+	    _this.state = { title: "", year: "", type: "" };
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    return _this;
 	  }
@@ -46232,7 +46230,7 @@
 	      e.preventDefault();
 	
 	      var s = this.state;
-	      this.props.searchMovies(s.title, s.year, s.type, s.page);
+	      this.props.searchMovies(s.title, s.year, s.type);
 	    }
 	  }, {
 	    key: 'renderTypes',
@@ -46296,7 +46294,9 @@
 	              value: 'Search' })
 	          )
 	        ),
-	        _react2.default.createElement(_page_nav2.default, { pages: this.props.pages, searchMovies: this.props.searchMovies }),
+	        _react2.default.createElement(_page_nav2.default, { pages: this.props.pages,
+	          searchMovies: this.props.searchMovies,
+	          searchData: this.state }),
 	        _react2.default.createElement(_movies2.default, { movies: this.props.movies })
 	      );
 	    }
@@ -46490,13 +46490,47 @@
 	  function PageNav(props) {
 	    _classCallCheck(this, PageNav);
 	
-	    return _possibleConstructorReturn(this, (PageNav.__proto__ || Object.getPrototypeOf(PageNav)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (PageNav.__proto__ || Object.getPrototypeOf(PageNav)).call(this, props));
+	
+	    _this.state = { currentPage: 1 };
+	
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(PageNav, [{
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      var newPage = e.currentTarget.innerHTML;
+	      this.setState({ currentPage: newPage });
+	
+	      var s = this.props.searchData;
+	      this.props.searchMovies(s.title, s.year, s.type, newPage);
+	    }
+	  }, {
 	    key: 'renderButtons',
 	    value: function renderButtons() {
-	      for (var i = 0; i < this.props.pages; i++) {}
+	      var buttons = [];
+	      if (this.props.pages > 1) {
+	        for (var i = 0; i < this.props.pages; i++) {
+	          if (i + 1 === parseInt(this.state.currentPage)) {
+	            buttons.push(_react2.default.createElement(
+	              'button',
+	              { id: 'current-page', onClick: this.handleSubmit },
+	              i + 1
+	            ));
+	          } else {
+	            buttons.push(_react2.default.createElement(
+	              'button',
+	              { onClick: this.handleSubmit },
+	              i + 1
+	            ));
+	          }
+	        }
+	      }
+	
+	      return buttons;
 	    }
 	  }, {
 	    key: 'render',

@@ -6,9 +6,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { title: "", year: "", type: "", page: 1
-    };
-
+    this.state = { title: "", year: "", type: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -20,7 +18,7 @@ class Search extends React.Component {
     e.preventDefault();
 
     let s = this.state;
-    this.props.searchMovies(s.title, s.year, s.type, s.page);
+    this.props.searchMovies(s.title, s.year, s.type);
   }
 
   renderTypes() {
@@ -65,7 +63,9 @@ class Search extends React.Component {
           </form>
         </div>
 
-        <PageNav pages={ this.props.pages } searchMovies={ this.props.searchMovies }/>
+        <PageNav pages={ this.props.pages }
+          searchMovies={ this.props.searchMovies }
+          searchData={ this.state } />
         <Movies movies={ this.props.movies }/>
       </div>
     );
