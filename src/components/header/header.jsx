@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class Header extends React.Component {
   constructor(props) {
@@ -7,7 +8,21 @@ class Header extends React.Component {
 
   render() {
     return (
-      <h1>Header</h1>
+      <div className='nav' id='header'>
+        <div id='left-half'>
+          <h1>FilmWeb</h1>
+        </div>
+
+        <div id='right-half'>
+          <div className='nav-link'>
+            <Link to={'/'}>Search</Link>
+          </div>
+          <div>|</div>
+          <div className='nav-link'>
+            <Link to={'favorites'}>Favorites</Link>
+          </div>
+        </div>
+      </div>
     );
   }
 }
