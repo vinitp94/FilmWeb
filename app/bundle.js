@@ -21546,10 +21546,16 @@
 	
 	var _favorites2 = _interopRequireDefault(_favorites);
 	
+	var _search_actions = __webpack_require__(282);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Root = function Root(_ref) {
 	  var store = _ref.store;
+	
+	  var _clearMovies = function _clearMovies() {
+	    store.dispatch(_search_actions.clearMovies);
+	  };
 	
 	  return _react2.default.createElement(
 	    _reactRedux.Provider,
@@ -21560,7 +21566,7 @@
 	      _react2.default.createElement(
 	        _reactRouter.Route,
 	        { path: '/', component: _app2.default },
-	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _search_container2.default }),
+	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _search_container2.default, onLeave: _clearMovies }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/favorites', component: _favorites2.default })
 	      )
 	    )
@@ -46161,7 +46167,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.searchMovies = exports.receiveNumberResults = exports.receiveAllMovies = exports.RECEIVE_NUM_RESULTS = exports.RECEIVE_ALL_MOVIES = undefined;
+	exports.clearMovies = exports.searchMovies = exports.receiveNumberResults = exports.receiveAllMovies = exports.RECEIVE_NUM_RESULTS = exports.RECEIVE_ALL_MOVIES = undefined;
 	
 	var _omdb_api_util = __webpack_require__(277);
 	
@@ -46203,6 +46209,11 @@
 	      return console.log(err);
 	    });
 	  };
+	};
+	
+	var clearMovies = exports.clearMovies = function clearMovies(dispatch) {
+	  dispatch(receiveAllMovies([]));
+	  dispatch(receiveNumberResults(0));
 	};
 
 /***/ },

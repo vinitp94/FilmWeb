@@ -29,3 +29,8 @@ export const searchMovies = (title, year, type, page) => (dispatch) => (
     })
     .fail(err => console.log(err))
 );
+
+export const clearMovies = (dispatch) => {
+  dispatch(receiveAllMovies([]));
+  dispatch(receiveNumberResults(0));
+};
