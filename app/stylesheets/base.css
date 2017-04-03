@@ -16,7 +16,15 @@ span, article, footer, time, small {
   box-sizing: inherit;
   background: transparent;
   font-family: 'Raleway', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
+
+  --main: #220969;
+  --light-main: #7B5CD3;
+  --dark-main: #140442;
+  --light-fill: #CECDD1;
+  --dark-fill: #141317;
+  --light-accent: #4ED68D;
+  --accent: #21C06B;
 }
 
 ul {
@@ -52,7 +60,7 @@ input[type="submit"] {
 }
 
 .main {
-  /*height: calc(100vh - 100px);*/
-  height: 300px;
+  height: calc(100vh - 100px);
+  overflow-y: scroll;
   margin-top: 50px;
 }

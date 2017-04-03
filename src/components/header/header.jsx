@@ -10,7 +10,7 @@ class Header extends React.Component {
     return (
       <div className='nav' id='header'>
         <div id='left-half'>
-          <h1>FilmWeb</h1>
+          <h1 id='title'>Film_Web</h1>
         </div>
 
         <div id='right-half'>

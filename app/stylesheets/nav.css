@@ -1,16 +1,49 @@
 .nav {
   position: fixed;
   display: flex;
-  background: grey;
+  background: var(--main);
   height: 50px;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-sizing: border-box;
 }
 
 #header {
   top: 0px;
+  border-bottom: 1px solid var(--accent);
+  box-shadow: 0px 1px 3px var(--accent);
 }
 
 #footer {
   bottom: 0px;
+  border-top: 1px solid var(--accent);
+  box-shadow: 0px -1px 3px var(--accent);
+}
+
+#left-half {
+  margin-left: 25px;
+}
+
+#right-half {
+  display: flex;
+  margin-right: 25px;
+}
+
+#right-half > * {
+  margin-left: 15px;
+}
+
+.nav-link:hover {
+  position: relative;
+  top: 2px;
+  color: var(--light-accent);
+}
+
+#title {
+  color: var(--light-accent);
+  font-size: 22px;
+  font-weight: 300;
+  text-shadow: 0px 0px 1px white;
 }

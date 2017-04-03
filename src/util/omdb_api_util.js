@@ -5,9 +5,10 @@ export const searchMovies = (title, year, type, page = 1) => {
     s: title,
     y: year,
     type: type,
-    page: page
+    page: page,
+    plot: 'full'
   });
-
+  debugger
   return $.ajax({
     method: 'GET',
     url: `https://www.omdbapi.com/?${query}`,

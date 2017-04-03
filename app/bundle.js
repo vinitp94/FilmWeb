@@ -62,7 +62,7 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _search_actions = __webpack_require__(282);
+	var _omdb_api_util = __webpack_require__(277);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -71,7 +71,7 @@
 	  var root = document.getElementById('root');
 	
 	  window.store = store;
-	  window.searchMovies = _search_actions.searchMovies;
+	  window.searchMovies = _omdb_api_util.searchMovies;
 	
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 	});
@@ -28821,8 +28821,8 @@
 	          { id: 'left-half' },
 	          _react2.default.createElement(
 	            'h1',
-	            null,
-	            'FilmWeb'
+	            { id: 'title' },
+	            'Film_Web'
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -29033,12 +29033,13 @@
 	    s: title,
 	    y: year,
 	    type: type,
-	    page: page
+	    page: page,
+	    plot: 'full'
 	  });
-	
+	  debugger;
 	  return $.ajax({
 	    method: 'GET',
-	    url: 'http://www.omdbapi.com/?' + query
+	    url: 'https://www.omdbapi.com/?' + query
 	  });
 	};
 
