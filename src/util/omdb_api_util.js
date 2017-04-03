@@ -10,6 +10,6 @@ export const searchMovies = (title, year, type, page = 1) => {
 
   return $.ajax({
     method: 'GET',
-    url: `http://www.omdbapi.com/?${query}`,
+    url: `https://www.omdbapi.com/?${query}`,
   });
 };
