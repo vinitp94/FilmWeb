@@ -1,0 +1,16 @@
+.nav {
+  position: fixed;
+  display: flex;
+  background: grey;
+  height: 50px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#header {
+  top: 0px;
+}
+
+#footer {
+  bottom: 0px;
+}

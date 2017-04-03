@@ -31,7 +31,7 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div id='search-results'>
+      <div className='main' id='search-results'>
         <div id='search-container'>
           <form id='search-form' onSubmit={ this.handleSubmit }>
             <label>Title:

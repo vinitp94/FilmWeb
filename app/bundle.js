@@ -28898,9 +28898,26 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Footer'
+	        'div',
+	        { className: 'nav', id: 'footer' },
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'left-half' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Developed and designed by Vinit Parikh.'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'right-half' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Github and Linkedin go here.'
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -46298,7 +46315,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { id: 'search-results' },
+	        { className: 'main', id: 'search-results' },
 	        _react2.default.createElement(
 	          'div',
 	          { id: 'search-container' },
@@ -46393,11 +46410,7 @@
 	  _createClass(Favorites, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Favorites'
-	      );
+	      return _react2.default.createElement('div', { className: 'main', id: 'favorites' });
 	    }
 	  }]);
 	

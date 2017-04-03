@@ -7,7 +7,15 @@ class Footer extends React.Component {
 
   render() {
     return (
-      <h1>Footer</h1>
+      <div className='nav' id='footer'>
+        <div id='left-half'>
+          <p>Developed and designed by Vinit Parikh.</p>
+        </div>
+
+        <div id='right-half'>
+          <p>Github and Linkedin go here.</p>
+        </div>
+      </div>
     );
   }
 }
