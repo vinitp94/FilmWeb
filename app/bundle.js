@@ -46493,7 +46493,6 @@
 	    var _this = _possibleConstructorReturn(this, (PageNav.__proto__ || Object.getPrototypeOf(PageNav)).call(this, props));
 	
 	    _this.state = { currentPage: 1 };
-	
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    return _this;
 	  }
@@ -46517,19 +46516,18 @@
 	          if (i + 1 === parseInt(this.state.currentPage)) {
 	            buttons.push(_react2.default.createElement(
 	              'button',
-	              { id: 'current-page', onClick: this.handleSubmit },
+	              { key: i, id: 'current-page', onClick: this.handleSubmit },
 	              i + 1
 	            ));
 	          } else {
 	            buttons.push(_react2.default.createElement(
 	              'button',
-	              { onClick: this.handleSubmit },
+	              { key: i, onClick: this.handleSubmit },
 	              i + 1
 	            ));
 	          }
 	        }
 	      }
-	
 	      return buttons;
 	    }
 	  }, {

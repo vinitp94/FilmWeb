@@ -5,7 +5,6 @@ class PageNav extends React.Component {
     super(props);
 
     this.state = { currentPage: 1 };
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -23,13 +22,20 @@ class PageNav extends React.Component {
     if (this.props.pages > 1) {
       for (let i = 0; i < this.props.pages; i++) {
         if (i + 1 === parseInt(this.state.currentPage)) {
-          buttons.push(<button id='current-page' onClick={ this.handleSubmit }>{i + 1}</button>);
+          buttons.push(
+            <button key={ i } id='current-page' onClick={ this.handleSubmit }>
+              { i + 1 }
+            </button>
+          );
         } else {
-          buttons.push(<button onClick={ this.handleSubmit }>{i + 1}</button>);
+          buttons.push(
+            <button key={ i } onClick={ this.handleSubmit }>
+              {i + 1}
+            </button>
+          );
         }
       }
     }
-
     return buttons;
   }
 
