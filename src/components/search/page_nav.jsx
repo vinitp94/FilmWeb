@@ -8,6 +8,8 @@ class PageNav extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // TODO: FIX BUG that 'currentpage' doesn't change on new search submit
+
   handleSubmit(e) {
     e.preventDefault();
     let newPage = e.currentTarget.innerHTML;

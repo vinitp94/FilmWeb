@@ -1,9 +1,22 @@
 import React from 'react';
 
-const MovieItem = ({ movie }) => (
-  <li id='movie-item'>
-    { movie.Title }
-  </li>
-);
+class MovieItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <li id='movie-item'>
+        <div className='left-movie-item'>
+          { this.props.movie.Title }
+        </div>
+        <div className='right-movie-item'>
+          { this.props.movie.Year }
+        </div>
+      </li>
+    );
+  }
+}
 
 export default MovieItem;

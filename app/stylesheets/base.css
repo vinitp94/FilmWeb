@@ -98,7 +98,7 @@ button, input[type="submit"] {
   border: 1px solid var(--accent);
 }
 
-button:hover, input[type="submit"]:hover {
+button:hover, input[type="submit"]:hover, #current-page {
   border: 1px solid var(--dark-fill);
   box-shadow: 0px 0px 4px var(--main);
   background: var(--accent);
