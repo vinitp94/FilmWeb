@@ -13,3 +13,15 @@ export const searchMovies = (title, year, type, page = 1) => {
     url: `https://www.omdbapi.com/?${query}`,
   });
 };
+
+export const fetchMovie = (imdbID) => {
+  let query = qs.stringify({
+    i: imdbID,
+    plot: 'full'
+  });
+
+  return $.ajax({
+    method: 'GET',
+    url: `https://www.omdbapi.com/?${query}`,
+  });
+};

@@ -29032,7 +29032,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.searchMovies = undefined;
+	exports.fetchMovie = exports.searchMovies = undefined;
 	
 	var _queryString = __webpack_require__(248);
 	
@@ -29048,6 +29048,18 @@
 	    y: year,
 	    type: type,
 	    page: page
+	  });
+	
+	  return $.ajax({
+	    method: 'GET',
+	    url: 'https://www.omdbapi.com/?' + query
+	  });
+	};
+	
+	var fetchMovie = exports.fetchMovie = function fetchMovie(imdbID) {
+	  var query = _queryString2.default.stringify({
+	    i: imdbID,
+	    plot: 'full'
 	  });
 	
 	  return $.ajax({
