@@ -46715,24 +46715,138 @@
 	var MovieDetail = function (_React$Component) {
 	  _inherits(MovieDetail, _React$Component);
 	
-	  function MovieDetail(props) {
+	  function MovieDetail() {
 	    _classCallCheck(this, MovieDetail);
 	
-	    return _possibleConstructorReturn(this, (MovieDetail.__proto__ || Object.getPrototypeOf(MovieDetail)).call(this, props));
+	    return _possibleConstructorReturn(this, (MovieDetail.__proto__ || Object.getPrototypeOf(MovieDetail)).apply(this, arguments));
 	  }
 	
 	  _createClass(MovieDetail, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      debugger;
+	      this.props.fetchMovie(this.props.params.id);
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h1',
-	        null,
-	        'detail'
+	        'div',
+	        { className: 'main', id: 'movie-detail' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Actors
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Awards
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.BoxOffice
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Country
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.DVD
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Director
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Genre
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Language
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Metascore
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Plot
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Poster
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Production
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Rated
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Released
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Response
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Runtime
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Title
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Type
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Website
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Writer
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.Year
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.imdbRating
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          this.props.movie.imdbVotes
+	        )
 	      );
 	    }
 	  }]);
