@@ -1,0 +1,11 @@
+#movie-container {
+  margin: 20px 8vw;
+}
+
+#movie-list > *:not(:last-child) {
+  border-bottom: 1px solid var(--dark-fill);
+}
+
+#movie-list > * {
+  padding: 20px 0px;
+}
