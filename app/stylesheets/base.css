@@ -21,8 +21,8 @@ span, article, footer, time, small {
   --main: #220969;
   --light-main: #7B5CD3;
   --dark-main: #140442;
-  --light-fill: #CECDD1;
-  --dark-fill: #141317;
+  --light-fill: #F5F5F5;
+  --dark-fill: grey;
   --light-accent: #4ED68D;
   --accent: #21C06B;
 }
@@ -48,11 +48,6 @@ button {
   appearance: none;
 }
 
-button,
-input[type="submit"] {
-  cursor: pointer;
-}
-
 .group:after {
   content: "";
   display: block;
@@ -63,4 +58,48 @@ input[type="submit"] {
   height: calc(100vh - 100px);
   overflow-y: scroll;
   margin-top: 50px;
+}
+
+select {
+  height: 37px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  font-weight: 200;
+  padding: 20px;
+  border-radius: 0px;
+}
+
+input, select {
+  padding: 10px;
+  border: 1px solid var(--light-main);
+  width: 15vw;
+  box-sizing: border-box;
+  background: var(--light-fill);
+  border-radius: 4px;
+}
+
+input:focus, select:focus {
+  border: 1px solid var(--dark-fill);
+  box-shadow: 0px 0px 4px var(--accent);
+  background: white;
+}
+
+select:focus {
+	border: 0;
+	outline: 1px solid var(--dark-fill);
+	background-color: white;
+}
+
+button, input[type="submit"] {
+  cursor: pointer;
+  text-align: center;
+  background: var(--main);
+  color: white;
+  border: 1px solid var(--accent);
+}
+
+button:hover, input[type="submit"]:hover {
+  border: 1px solid var(--dark-fill);
+  box-shadow: 0px 0px 4px var(--main);
+  background: var(--accent);
 }
