@@ -1,29 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-class MovieItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
-    e.preventDefault();
-    debugger
-  }
-
-  render() {
-    return (
-      <li id='movie-item' onClick={ this.handleClick }>
-        <div className='left-movie-item'>
-          { this.props.movie.Title }
-        </div>
-        <div className='right-movie-item'>
-          { this.props.movie.Year }
-        </div>
-      </li>
-    );
-  }
-}
+const MovieItem = ({ movie }) => (
+    <Link to={`/movie/${movie.imdbID}`}>
+      <div className='left-movie-item'>
+        { movie.Title }
+      </div>
+      <div className='right-movie-item'>
+        { movie.Year }
+      </div>
+    </Link>
+);
 
 export default MovieItem;
