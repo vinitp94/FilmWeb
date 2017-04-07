@@ -17,10 +17,6 @@ class Header extends React.Component {
           <div className='nav-link'>
             <Link to={'/'}>Search</Link>
           </div>
-          <div>|</div>
-          <div className='nav-link'>
-            <Link to={'favorites'}>Favorites</Link>
-          </div>
         </div>
       </div>
     );

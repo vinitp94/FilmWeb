@@ -21542,11 +21542,13 @@
 	
 	var _search_container2 = _interopRequireDefault(_search_container);
 	
-	var _favorites = __webpack_require__(280);
+	var _movie_detail_container = __webpack_require__(287);
 	
-	var _favorites2 = _interopRequireDefault(_favorites);
+	var _movie_detail_container2 = _interopRequireDefault(_movie_detail_container);
 	
 	var _search_actions = __webpack_require__(274);
+	
+	var _movie_detail_actions = __webpack_require__(280);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21555,6 +21557,10 @@
 	
 	  var _clearMovies = function _clearMovies() {
 	    store.dispatch(_search_actions.clearMovies);
+	  };
+	
+	  var _clearMovie = function _clearMovie() {
+	    store.dispatch(_movie_detail_actions.clearMovie);
 	  };
 	
 	  return _react2.default.createElement(
@@ -21567,7 +21573,7 @@
 	        _reactRouter.Route,
 	        { path: '/', component: _app2.default },
 	        _react2.default.createElement(_reactRouter.IndexRoute, { component: _search_container2.default, onLeave: _clearMovies }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/favorites', component: _favorites2.default })
+	        _react2.default.createElement(_reactRouter.Route, { path: '/movie/:id', component: _movie_detail_container2.default, onLeave: _clearMovie })
 	      )
 	    )
 	  );
@@ -28836,20 +28842,6 @@
 	              { to: '/' },
 	              'Search'
 	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            '|'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'nav-link' },
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: 'favorites' },
-	              'Favorites'
-	            )
 	          )
 	        )
 	      );
@@ -29412,43 +29404,36 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.clearMovie = exports.fetchMovie = exports.receiveMovie = exports.RECEIVE_MOVIE = undefined;
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _omdb_api_util = __webpack_require__(275);
 	
-	var _react = __webpack_require__(1);
+	var OMDBAPIUtil = _interopRequireWildcard(_omdb_api_util);
 	
-	var _react2 = _interopRequireDefault(_react);
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
-	var _reactRouter = __webpack_require__(217);
+	var RECEIVE_MOVIE = exports.RECEIVE_MOVIE = 'RECEIVE_MOVIE';
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var receiveMovie = exports.receiveMovie = function receiveMovie(movie) {
+	  return {
+	    type: RECEIVE_MOVIE,
+	    movie: movie
+	  };
+	};
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var fetchMovie = exports.fetchMovie = function fetchMovie(imdbID) {
+	  return function (dispatch) {
+	    return OMDBAPIUtil.fetchMovie(imdbID).then(function (movie) {
+	      dispatch(receiveMovie(movie));
+	    }).fail(function (err) {
+	      return console.log(err);
+	    });
+	  };
+	};
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Favorites = function (_React$Component) {
-	  _inherits(Favorites, _React$Component);
-	
-	  function Favorites(props) {
-	    _classCallCheck(this, Favorites);
-	
-	    return _possibleConstructorReturn(this, (Favorites.__proto__ || Object.getPrototypeOf(Favorites)).call(this, props));
-	  }
-	
-	  _createClass(Favorites, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement('div', { className: 'main', id: 'favorites' });
-	    }
-	  }]);
-	
-	  return Favorites;
-	}(_react2.default.Component);
-	
-	exports.default = Favorites;
+	var clearMovie = exports.clearMovie = function clearMovie(dispatch) {
+	  dispatch(receiveMovie({}));
+	};
 
 /***/ },
 /* 281 */
@@ -29466,7 +29451,7 @@
 	
 	var _root_reducer2 = _interopRequireDefault(_root_reducer);
 	
-	var _reduxThunk = __webpack_require__(285);
+	var _reduxThunk = __webpack_require__(286);
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
@@ -29495,10 +29480,15 @@
 	
 	var _search_result_reducer2 = _interopRequireDefault(_search_result_reducer);
 	
+	var _movie_detail_reducer = __webpack_require__(285);
+	
+	var _movie_detail_reducer2 = _interopRequireDefault(_movie_detail_reducer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var RootReducer = (0, _redux.combineReducers)({
-	  searchResults: _search_result_reducer2.default
+	  searchResults: _search_result_reducer2.default,
+	  movieDetail: _movie_detail_reducer2.default
 	});
 	
 	exports.default = RootReducer;
@@ -46636,6 +46626,34 @@
 
 /***/ },
 /* 285 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _movie_detail_actions = __webpack_require__(280);
+	
+	var MovieDetailReducer = function MovieDetailReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+	
+	  Object.freeze(state);
+	
+	  switch (action.type) {
+	    case _movie_detail_actions.RECEIVE_MOVIE:
+	      return action.movie;
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = MovieDetailReducer;
+
+/***/ },
+/* 286 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46661,6 +46679,12 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 	
 	exports['default'] = thunk;
+
+/***/ },
+/* 287 */
+/***/ function(module, exports) {
+
+	"use strict";
 
 /***/ }
 /******/ ]);

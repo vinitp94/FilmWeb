@@ -25,4 +25,9 @@
 .left-movie-item {
   font-size: 14px;
   font-weight: 300;
+  margin-left: 5px;
+}
+
+.right-movie-item {
+  margin-right: 5px;
 }
