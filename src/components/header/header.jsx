@@ -9,11 +9,11 @@ class Header extends React.Component {
   render() {
     return (
       <div className='nav' id='header'>
-        <div id='left-half'>
+        <div className='left-half'>
           <h1 id='title'>Film_Web</h1>
         </div>
 
-        <div id='right-half'>
+        <div className='right-half'>
           <div className='nav-link'>
             <Link to={'/'}>Search</Link>
           </div>

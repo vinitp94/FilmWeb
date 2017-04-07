@@ -28824,7 +28824,7 @@
 	        { className: 'nav', id: 'header' },
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'left-half' },
+	          { className: 'left-half' },
 	          _react2.default.createElement(
 	            'h1',
 	            { id: 'title' },
@@ -28833,7 +28833,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'right-half' },
+	          { className: 'right-half' },
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'nav-link' },
@@ -28894,7 +28894,7 @@
 	        { className: 'nav', id: 'footer' },
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'left-half' },
+	          { className: 'left-half' },
 	          _react2.default.createElement(
 	            'p',
 	            null,
@@ -28902,12 +28902,34 @@
 	          )
 	        ),
 	        _react2.default.createElement(
-	          'div',
-	          { id: 'right-half' },
+	          'ul',
+	          { className: 'right-half', id: 'footer-links' },
 	          _react2.default.createElement(
-	            'p',
+	            'li',
 	            null,
-	            'Github and Linkedin go here.'
+	            _react2.default.createElement(
+	              'a',
+	              { href: 'https://github.com/vinitp94', target: '_blank' },
+	              _react2.default.createElement('img', { src: 'https://res.cloudinary.com/dlhshbg79/image/upload/v1484785761/Logomakr_0gmJzG_orzjyt.png' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { href: 'https://www.linkedin.com/in/vinit-parikh-67b7a27b', target: '_blank' },
+	              _react2.default.createElement('img', { src: 'https://res.cloudinary.com/dlhshbg79/image/upload/v1484785988/Logomakr_2oAfUw_arivhn.png' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              'a',
+	              { href: 'http://www.vinitparikh.com/', target: '_blank' },
+	              _react2.default.createElement('img', { src: 'https://res.cloudinary.com/dlhshbg79/image/upload/v1487290091/Logomakr_7Z8deU_aa7jus.png' })
+	            )
 	          )
 	        )
 	      );
