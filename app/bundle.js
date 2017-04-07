@@ -29262,15 +29262,24 @@
 	  function MovieItem(props) {
 	    _classCallCheck(this, MovieItem);
 	
-	    return _possibleConstructorReturn(this, (MovieItem.__proto__ || Object.getPrototypeOf(MovieItem)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (MovieItem.__proto__ || Object.getPrototypeOf(MovieItem)).call(this, props));
+	
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(MovieItem, [{
+	    key: 'handleClick',
+	    value: function handleClick(e) {
+	      e.preventDefault();
+	      debugger;
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'li',
-	        { id: 'movie-item' },
+	        { id: 'movie-item', onClick: this.handleClick },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'left-movie-item' },
