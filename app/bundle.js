@@ -46682,6 +46682,43 @@
 
 /***/ },
 /* 287 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(179);
+	
+	var _movie_detail_actions = __webpack_require__(280);
+	
+	var _movie_detail = __webpack_require__(288);
+	
+	var _movie_detail2 = _interopRequireDefault(_movie_detail);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(_ref) {
+	  var movieDetail = _ref.movieDetail;
+	  return {
+	    movie: movieDetail
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    fetchMovie: function fetchMovie(imdbID) {
+	      return dispatch((0, _movie_detail_actions.fetchMovie)(imdbID));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_movie_detail2.default);
+
+/***/ },
+/* 288 */
 /***/ function(module, exports) {
 
 	"use strict";
